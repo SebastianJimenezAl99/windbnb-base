@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import CardData from "./components/cardData/CardData";
+import logo from "./img/logo.png"
 
 
 function App() {
@@ -31,7 +32,7 @@ function App() {
   return (
     <div className="contenedor-principal">
        <nav className="navegacion">
-        <img className="logo-principal" src="../src/img/logo.png" />
+        <img className="logo-principal" src={logo} />
         <div className="inputs-busquedad">
           <input type="text" className="input-busqueda" id="ubicacion" placeholder="Ubicacion"/>
           <input type="text" className="input-busqueda" id="guest" placeholder="Add guest" />
