@@ -1,0 +1,42 @@
+.imagen-card{
+    width: 385px;
+    height: 250px;
+    
+    border-radius: 20px;
+}
+
+.info-primera-parte{
+    width: 385px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.fa-star{
+    color: rgb(240, 65, 12);
+    margin-right: 5px;
+    
+}
+
+.body-card{
+    margin-bottom: 40px;
+}
+
+
+.super-host{
+    border: 1px solid rgb(70, 69, 69);
+    border-radius: 20px;
+    padding: 5px 10px;
+    margin-right: 10px;
+    font-weight: bold;
+    color: rgb(70, 69, 69);
+}
+
+.info-apart{
+    color: gray;
+}
+
+.more-info-apart{
+    margin-top: 20px;
+    font-weight: bold;
+}
