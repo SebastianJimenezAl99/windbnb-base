@@ -17,7 +17,7 @@ function App() {
       if (huesped) {
         setData(dataOriginal.filter(el=> el.city == ciudad && el.maxGuests >= huesped))
       }else{
-        setData(dataOriginal.filter(el=> el.maxGuests >= huesped))
+        setData(dataOriginal.filter(el=> el.city == ciudad))
       }
     }else{
       if (huesped) {
@@ -38,7 +38,7 @@ function App() {
     }
    
     filtrar(ciudad,guest.value);
-    ubicacion.value = ciudad;
+    ubicacion.value = ciudad+", Finland";
   }
 
   // Función para traer los datos de "stays.json".
