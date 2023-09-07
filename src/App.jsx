@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import CardData from "./components/cardData/CardData";
-import logo from "./img/logo.png"
+
+import Navs from "./components/nav/Navs";
+
 
 
 function App() {
   // La variable data es la que va a almacenar los datos de "stays.json" y setData nos ayudará a guardar esos datos en esa variable. Es necesario que inicialicemos esa variable como un array vacío para evitar errores.
   const [data, setData] = useState([]);
   const [json, setJson] = useState([]);
+  
 
 
   function filtrar(ciudad,huesped){
@@ -27,6 +30,20 @@ function App() {
       }
     }
     
+  }
+
+  function actualizarVistaPorInput(){
+      const guest = document.querySelector("#guest");
+      const ubicacion = document.querySelector("#ubicacion");
+      let ciudad = ubicacion.value
+      if (isNaN(ciudad.charAt(0))) {
+        ciudad = ciudad.charAt(0).toUpperCase() + ciudad.slice(1);
+      }
+
+      let dataOriginal = json;
+      let resultado = dataOriginal.filter(el => ciudad == el.city.slice(0,ciudad.length))
+      console.log(resultado);
+      
   }
 
   function actualizarVista() {
@@ -65,16 +82,13 @@ function App() {
 
   return (
     <div className="contenedor-principal">
-       <nav className="navegacion">
-        <img className="logo-principal" src={logo} />
-        <div className="inputs-busquedad">
-          <input type="text" className="input-busqueda" id="ubicacion" placeholder="Ubicacion"/>
-          <input type="text" className="input-busqueda" id="guest" placeholder="Add guest" />
-          <i className="fa-solid fa-magnifying-glass logo" onClick={actualizarVista}></i>
-        </div>  
-       </nav>
+      <Navs />
        <div className="contenedor-secundario">
-        <h2 className="titulo-principal">Stays in Finland</h2>
+        <div>
+          <h2 className="titulo-principal">Stays in Finland</h2>
+          <h3>prueba</h3>
+        </div>
+       
         <div className="contenedorDeCard">
           {data.map((el, i) => {
             return (
@@ -92,6 +106,7 @@ function App() {
           
         </div>
        </div>
+       
     </div>
   );
 }
