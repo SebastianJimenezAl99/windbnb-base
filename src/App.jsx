@@ -7,6 +7,39 @@ import logo from "./img/logo.png"
 function App() {
   // La variable data es la que va a almacenar los datos de "stays.json" y setData nos ayudará a guardar esos datos en esa variable. Es necesario que inicialicemos esa variable como un array vacío para evitar errores.
   const [data, setData] = useState([]);
+  const [json, setJson] = useState([]);
+
+
+  function filtrar(ciudad,huesped){
+    let dataOriginal = json;
+    
+    if (ciudad) {
+      if (huesped) {
+        setData(dataOriginal.filter(el=> el.city == ciudad && el.maxGuests >= huesped))
+      }else{
+        setData(dataOriginal.filter(el=> el.maxGuests >= huesped))
+      }
+    }else{
+      if (huesped) {
+        setData(dataOriginal.filter(el=> el.maxGuests >= huesped))
+      }else{
+        setData(dataOriginal);
+      }
+    }
+    
+  }
+
+  function actualizarVista() {
+    const guest = document.querySelector("#guest");
+    const ubicacion = document.querySelector("#ubicacion");
+    let ciudad = ubicacion.value
+    if (isNaN(ciudad.charAt(0))) {
+      ciudad = ciudad.charAt(0).toUpperCase() + ciudad.slice(1);
+    }
+   
+    filtrar(ciudad,guest.value);
+    ubicacion.value = ciudad;
+  }
 
   // Función para traer los datos de "stays.json".
   const getData = async () => {
@@ -16,8 +49,9 @@ function App() {
       const resJson = await res.json();
       // Aquí guardamos los datos de "stays.json" en la variable data.
       setData(resJson);
+      setJson(resJson);
     } catch (error) {
-      console.log(error);
+      console.log("Error de try catch: "+error);
     }
   };
 
@@ -27,7 +61,7 @@ function App() {
   }, []);
 
   // Puedes ver la variable data en consola.
-  console.log(data);
+ 
 
   return (
     <div className="contenedor-principal">
@@ -36,7 +70,7 @@ function App() {
         <div className="inputs-busquedad">
           <input type="text" className="input-busqueda" id="ubicacion" placeholder="Ubicacion"/>
           <input type="text" className="input-busqueda" id="guest" placeholder="Add guest" />
-          <i className="fa-solid fa-magnifying-glass logo"></i>
+          <i className="fa-solid fa-magnifying-glass logo" onClick={actualizarVista}></i>
         </div>  
        </nav>
        <div className="contenedor-secundario">
