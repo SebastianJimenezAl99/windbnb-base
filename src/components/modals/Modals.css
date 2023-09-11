@@ -79,3 +79,53 @@
     font-weight: bold;
     margin-bottom: 5px;
 }
+
+.BotonBuscar{
+    height: 90%;
+    background-color: #EB5757;
+    color: white;
+    border: none;
+    width: 100px;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.fa-magnifying-glass{
+    padding-right: 10px;
+}
+
+.BotonBuscar :hover{
+    cursor: pointer;
+    background-color: #fa6868;
+   
+}
+
+.fa-magnifying-glass :hover{
+    cursor: pointer;
+    background-color: #fa6868;
+}
+
+.contenedorDeFiltracionDatos{
+    display: flex;
+    width: 760px;
+    
+}
+
+.contenedorDeFiltracionDatos div{
+    width: 250px;
+    padding: 20px;
+}
+
+.operadores button{
+    width: 20px;
+    height: 20px;
+    margin: 10px;
+}
+
+.city-modal{
+    margin-top: 30px;
+}
+
+.city-modal:hover{
+    cursor: pointer;
+}

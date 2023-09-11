@@ -10,53 +10,37 @@ function App() {
   // La variable data es la que va a almacenar los datos de "stays.json" y setData nos ayudará a guardar esos datos en esa variable. Es necesario que inicialicemos esa variable como un array vacío para evitar errores.
   const [data, setData] = useState([]);
   const [json, setJson] = useState([]);
+  const [cantidad , setCantidad] =useState(0);
   
 
 
   function filtrar(ciudad,huesped){
     let dataOriginal = json;
+    let dataResultante;
     
     if (ciudad) {
       if (huesped) {
-        setData(dataOriginal.filter(el=> el.city == ciudad && el.maxGuests >= huesped))
+        dataResultante = dataOriginal.filter(el=> el.city == ciudad && el.maxGuests >= huesped);
+        setData(dataResultante)
       }else{
-        setData(dataOriginal.filter(el=> el.city == ciudad))
+        dataResultante = dataOriginal.filter(el=> el.city == ciudad)
+        setData(dataResultante)
       }
     }else{
       if (huesped) {
-        setData(dataOriginal.filter(el=> el.maxGuests >= huesped))
+        dataResultante = dataOriginal.filter(el=> el.maxGuests >= huesped)
+        setData(dataResultante)
       }else{
-        setData(dataOriginal);
+        dataResultante = dataOriginal
+        setData(dataResultante);
       }
     }
     
+    setCantidad(dataResultante.length);
   }
 
-  function actualizarVistaPorInput(){
-      const guest = document.querySelector("#guest");
-      const ubicacion = document.querySelector("#ubicacion");
-      let ciudad = ubicacion.value
-      if (isNaN(ciudad.charAt(0))) {
-        ciudad = ciudad.charAt(0).toUpperCase() + ciudad.slice(1);
-      }
 
-      let dataOriginal = json;
-      let resultado = dataOriginal.filter(el => ciudad == el.city.slice(0,ciudad.length))
-      console.log(resultado);
-      
-  }
-
-  function actualizarVista() {
-    const guest = document.querySelector("#guest");
-    const ubicacion = document.querySelector("#ubicacion");
-    let ciudad = ubicacion.value
-    if (isNaN(ciudad.charAt(0))) {
-      ciudad = ciudad.charAt(0).toUpperCase() + ciudad.slice(1);
-    }
-   
-    filtrar(ciudad,guest.value);
-    ubicacion.value = ciudad+", Finland";
-  }
+  
 
   // Función para traer los datos de "stays.json".
   const getData = async () => {
@@ -75,6 +59,7 @@ function App() {
   // Este Hook te va a ejecutar la función getData cada vez que la página se renderice.
   useEffect(() => {
      getData();
+     setCantidad(json.length);
   }, []);
 
   // Puedes ver la variable data en consola.
@@ -82,11 +67,11 @@ function App() {
 
   return (
     <div className="contenedor-principal">
-      <Navs />
+      <Navs data={json} fun={filtrar}/>
        <div className="contenedor-secundario">
-        <div>
+        <div className="divTitulo">
           <h2 className="titulo-principal">Stays in Finland</h2>
-          <h3>prueba</h3>
+          <span>{cantidad > 12 ? "12+ stays": cantidad+" stays"}</span>
         </div>
        
         <div className="contenedorDeCard">
