@@ -70,7 +70,7 @@
 .div-input{
     display: flex;
     flex-direction: column;
-    padding: 3px 5px;
+    padding: 3px 10px;
 }
 
 
@@ -78,6 +78,7 @@
     font-size: 8px;
     font-weight: bold;
     margin-bottom: 5px;
+    margin-left: 5px;
 }
 
 .BotonBuscar{
@@ -111,15 +112,28 @@
     
 }
 
-.contenedorDeFiltracionDatos div{
-    width: 250px;
-    padding: 20px;
+.divCity-seleccion-location{
+    width: 260px;
+    height: 200px;
+    
+}
+
+.ubi{
+    margin-right: 5px;
+    margin-left: 10px;
 }
 
 .operadores button{
-    width: 20px;
-    height: 20px;
-    margin: 10px;
+    width: 25px;
+    height: 25px;
+    border: 1px solid #828282;
+    color: #828282;
+    border-radius: 5px;
+    font-size: large; 
+}
+
+.info-p-modal{
+    color: #BDBDBD;
 }
 
 .city-modal{
@@ -129,3 +143,30 @@
 .city-modal:hover{
     cursor: pointer;
 }
+
+.modal-filtros-input{
+    margin-left: 5px;
+}
+
+.div-guests-modal{
+   
+    width: 260px;
+    height: 200px;
+    
+}
+
+.operadores{
+    
+    margin: 10px;
+    margin-top: 20px;
+}
+
+.buttonGuest *{
+ margin-right: 10px;
+}
+
+.buttonGuest {
+    margin-top: 10px;
+}
+
+

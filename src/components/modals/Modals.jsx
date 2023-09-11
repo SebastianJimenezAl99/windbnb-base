@@ -57,14 +57,18 @@ function Modals(props) {
        inputGuest_nav.value = ninos+adultos == 0 ? "" : ninos+adultos;
     }
     
-   buscarCiudad();
+    function iniciarLocation() {
+        console.log("Hola");
+    }
+
+    buscarCiudad();
     
 
     return(
         <section className="modal">
             <div className="modal_contenedor">
                 <div className="modal-inputs">
-                    <div className="div-input nivel-1">
+                    <div className="div-input nivel-1" onClick={iniciarLocation}>
                         <label htmlFor="location">LOCATION</label>
                         <input type="text" placeholder="Add Location" id="location" name="location" className="modal-filtros-input" readOnly />
                     </div>
@@ -91,20 +95,23 @@ function Modals(props) {
                     </div>
                 </div>
                 <div className="contenedorDeFiltracionDatos">
-                    <div id="divCity" >
-                        {
-                            ciudades.map((el,i) =>{
-                                return(
-                                    <p className="city-modal" key={i} onClick={()=>selecionarCiudad(el+", Finland")} ><i className="fa-solid fa-location-dot"></i> {el+", Finland"}  </p>
-                                )
-                            })
-                        }
+                    <div className="divCity-seleccion-location">
+                        <div id="div-City" >
+                            {
+                                ciudades.map((el,i) =>{
+                                    return(
+                                        <p className="city-modal" key={i} onClick={()=>selecionarCiudad(el+", Finland")} ><i className="fa-solid fa-location-dot ubi"></i> {el+", Finland"}  </p>
+                                    )
+                                })
+                            }
+                        </div>
                     </div>
-                    <div>
+                   
+                    <div className="div-guests-modal">
                         <div className="operadores">
                             <h4>Adults</h4>
-                            <p>Ages 13 or above</p>
-                            <div>
+                            <p className="info-p-modal">Ages 13 or above</p>
+                            <div className="buttonGuest">
                                 <button onClick={() => cantidadGuest("-","adults")}>-</button>
                                 <span>{adults}</span>
                                 <button onClick={() => cantidadGuest("+","adults")}>+</button>
@@ -113,8 +120,8 @@ function Modals(props) {
 
                         <div className="operadores">
                             <h4>Children</h4>
-                            <p>Ages 2 - 12</p>
-                            <div>
+                            <p className="info-p-modal">Ages 2 - 12</p>
+                            <div  className="buttonGuest">
                                 <button onClick={() => cantidadGuest("-")}>-</button>
                                 <span>{children}</span>
                                 <button onClick={() => cantidadGuest("+")} >+</button>
